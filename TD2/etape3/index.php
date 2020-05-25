@@ -35,12 +35,12 @@ le formulaire suivie d'un affichage du contenu de la base -->
 
 // Fonction d'ajout
 function EcritureData($nom, $prenom, $statut, $date) {
-	$servername = ______________
-	$username = ______________
-	$password = ______________
-	$dbname = ______________
+	$servername = "localhost"
+	$username = "root"
+	$password = "root"
+	$dbname = "TDSIN"
 	// Create connection
-	_____________________________________________
+	$conn = new mysqli($servername, $username, $password, $dbname);
 	$conn->set_charset('utf8');
 	
 	// Check connection
@@ -49,19 +49,18 @@ function EcritureData($nom, $prenom, $statut, $date) {
 	} 
 	// ajout d'une entité
 	$sql = "INSERT INTO famille_tbl (nom, prenom, statut, date) VALUES ('$nom', '$prenom', '$statut', '$date')";
-	___________________________
-
+	$conn->query($sql);
 	$conn->close();  
 }
 
 // consultation des données
 function lireContenu() {
-	$servername = ______________
-	$username = ______________
-	$password = ______________
-	$dbname = ______________
+	$servername = "localhost"
+	$username = "root"
+	$password = "root"
+	$dbname = "TDSIN"
 	// Create connection
-	_____________________________________________
+	$conn = new mysqli($servername, $username, $password, $dbname);
 	$conn->set_charset('utf8');
 	
 	// Check connection
@@ -70,12 +69,12 @@ function lireContenu() {
 	} 
 	
 	// lecture des données (TD1)
-	_____________________________________________
-	_____________________________________________
+	$sql = 'SELECT * FROM famille_tbl';
+	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		// output data of each row
 		while($row = $result->fetch_assoc()) {
-			echo _____________________________________________
+			echo $row['nom']. "  " .$row['prenom']. "   (" . $row['statut']."),    date de naissance : " . $row['date']."<br>";
 		}
 	} else {
 		echo "0 results";
@@ -83,6 +82,3 @@ function lireContenu() {
 	$conn->close();  
 }
 ?>
-
-
-
