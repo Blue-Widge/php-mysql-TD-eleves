@@ -2,7 +2,7 @@
 
 <?php
     // récupération des données du formulaire
-    if (_____________________________________) {
+    if (!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['statut'] AND !empty($_POST['date']) {
         $nom= $_POST['nom'];	
         $prenom= $_POST['prenom'];
         $statut= $_POST['statut'];
@@ -14,8 +14,6 @@
     else {
         echo "Un des paramètres est vides";
     }
-    
-    
 ?>
 <html>
 	<head>
@@ -40,16 +38,50 @@
 
 // Fonction d'ajout
 function EcritureData($nom, $prenom, $statut, $date) {
-    __________
-    ......
+	$servername = "localhost"
+	$username = "root"
+	$password = "root"
+	$dbname = "TDSIN"
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	$conn->set_charset('utf8');
+	
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
+	// ajout d'une entité
+	$sql = "INSERT INTO famille_tbl (nom, prenom, statut, date) VALUES ('$nom', '$prenom', '$statut', '$date')";
+	$conn->query($sql);
+	$conn->close();  
 }
 
-// fonction de consultation des données
+// consultation des données
 function lireContenu() {
-    ______________
-    .....
+	$servername = "localhost"
+	$username = "root"
+	$password = "root"
+	$dbname = "TDSIN"
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	$conn->set_charset('utf8');
+	
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
+	
+	// lecture des données (TD1)
+	$sql = 'SELECT * FROM famille_tbl';
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			echo $row['nom']. "  " .$row['prenom']. "   (" . $row['statut']."),    date de naissance : " . $row['date']."<br>";
+		}
+	} else {
+		echo "0 results";
+	}	
+	$conn->close();  
 }
 ?>
-
-
-
