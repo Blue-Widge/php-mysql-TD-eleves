@@ -2,7 +2,7 @@
 le formulaire suivie d'un affichage du contenu de la base -->
 
 <?php
-    // récupération des données du formulaire
+    //  récupération des données du formulaire
     $nom= $_POST['nom'];	
     $prenom= $_POST['prenom'];
     $statut= $_POST['statut'];
